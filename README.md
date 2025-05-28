@@ -1,62 +1,193 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🌐 Payplex Pages – Laravel Page Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**Payplex Pages** is a Laravel-based content management module that enables admins to create, manage, and edit custom pages within a web application. Designed for flexibility and scalability, it provides an intuitive UI for CRUD operations, robust authentication, and a modular structure.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📚 Table of Contents
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- [Features](#-features)
+- [Technologies Used](#-technologies-used)
+- [Installation](#-installation)
+- [Usage](#-usage)
+- [Routes](#-routes)
+- [File Structure](#-file-structure)
+- [Contributing](#-contributing)
+- [License](#-license)
+- [Contact](#-contact)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## ✨ Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- ✅ Admin authentication & role-based access  
+- ✅ CRUD operations for pages  
+- ✅ Clean Blade templating with Tailwind CSS  
+- ✅ Modular MVC architecture  
+- ✅ PostgreSQL compatible  
+- ✅ RESTful route design  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚙️ Technologies Used
 
-## Laravel Sponsors
+| Stack        | Technology              |
+|--------------|------------------------|
+| **Backend**  | Laravel 10, PHP 8.1+    |
+| **Frontend** | Blade, Tailwind CSS     |
+| **Database** | PostgreSQL / MySQL      |
+| **Tools**    | Composer, npm           |
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 📦 Installation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### Prerequisites
 
-## Contributing
+- PHP 8.1 or higher  
+- Composer  
+- Node.js & npm  
+- PostgreSQL or MySQL  
+- Git  
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Steps
 
-## Code of Conduct
+```bash
+# Clone the repository
+git clone https://github.com/your-username/payplex-pages.git
+cd payplex-pages
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Install PHP dependencies
+composer install
 
-## Security Vulnerabilities
+# Install JavaScript dependencies
+npm install && npm run dev
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Copy environment variables
+cp .env.example .env
 
-## License
+# Configure .env (DB credentials, APP_KEY, etc.)
+# Example for PostgreSQL
+DB_CONNECTION=pgsql
+DB_HOST=127.0.0.1
+DB_PORT=5432
+DB_DATABASE=payplex_pages
+DB_USERNAME=postgres
+DB_PASSWORD=secret
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-"# payplex_assignment" 
+# Generate application key
+php artisan key:generate
+
+# Run migrations
+php artisan migrate
+
+# Start development server
+php artisan serve
+Open http://localhost:8000 in your browser.
+
+🚀 Usage
+Homepage: Displays a welcome or default view.
+
+Admin Panel: After logging in, admins can create, edit, and delete pages.
+
+Pages Route: Publicly viewable pages by slug (e.g., /pages/about-us).
+
+Dynamic Routing: Pages can be created without hardcoding routes.
+
+🔁 Routes
+Method	URI	Name	Description
+GET	/	welcome	Homepage
+GET	/login	login	Login form
+POST	/login	-	Handle login
+POST	/logout	logout	Logout
+GET	/pages	pages.index	List all pages (admin only)
+GET	/pages/create	pages.create	Show page creation form
+POST	/pages	pages.store	Store new page
+GET	/pages/{page}/edit	pages.edit	Edit page form
+PUT	/pages/{page}	pages.update	Update page
+DELETE	/pages/{page}	pages.destroy	Delete page
+GET	/pages/{slug}	pages.show	View public page by slug
+
+🔒 Routes under /pages (except {slug}) are protected by auth middleware.
+
+🗂️ File Structure
+pgsql
+Copy
+Edit
+payplex-pages/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── Auth/
+│   │   │   ├── Admin/
+│   │   │   └── PageController.php
+│   ├── Models/
+│   │   ├── Page.php
+│   │   └── User.php
+│
+├── resources/
+│   ├── views/
+│   │   ├── pages/
+│   │   │   ├── index.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── edit.blade.php
+│   │   │   └── show.blade.php
+│   │   ├── layouts/
+│   │   │   └── app.blade.php
+│   │   └── welcome.blade.php
+│
+├── routes/
+│   └── web.php
+│
+├── database/
+│   ├── migrations/
+│   └── seeders/
+│
+├── public/
+│
+├── storage/              # Symlink for uploads
+│
+├── .env
+├── composer.json
+├── package.json
+🤝 Contributing
+We welcome contributions from developers of all experience levels.
+
+Steps
+Fork the repository.
+
+Create a new branch:
+
+bash
+Copy
+Edit
+git checkout -b feature/your-feature-name
+Make your changes and commit:
+
+bash
+Copy
+Edit
+git commit -m "Add your feature"
+Push to your branch:
+
+bash
+Copy
+Edit
+git push origin feature/your-feature-name
+Open a pull request.
+
+✅ Follow PSR-12 PHP standards.
+✅ Keep commits atomic and clear.
+✅ Include a brief summary of the feature or fix in the PR.
+
+📄 License
+This project is licensed under the MIT License.
+
+📬 Contact
+📧 Email: raju@example.com
+
+💼 LinkedIn: linkedin.com/in/rajukumarraja
+
+🐙 GitHub: github.com/rajukrraja
+
+© 2025 Payplex Technologies Pvt. Ltd. – All rights reserved.
